@@ -5,7 +5,6 @@ import Prelude
 import Data.Foreign.Class (class Decode, class Encode)
 import Data.Foreign.Generic (defaultOptions, genericDecode, genericEncode)
 import Data.Foreign.Generic.Types (Options)
-import Data.Foreign.NullOrUndefined (NullOrUndefined(..))
 import Data.Generic.Rep (class Generic)
 import Data.Generic.Rep.Show (genericShow)
 import Data.Maybe (Maybe(..))
@@ -74,9 +73,9 @@ instance encodeClaimValue :: Encode ClaimValue where encode = genericEncode opti
 
 -- | <p>A provider representing an Amazon Cognito Identity User Pool and its client ID.</p>
 newtype CognitoIdentityProvider = CognitoIdentityProvider 
-  { "ProviderName" :: NullOrUndefined (CognitoIdentityProviderName)
-  , "ClientId" :: NullOrUndefined (CognitoIdentityProviderClientId)
-  , "ServerSideTokenCheck" :: NullOrUndefined (CognitoIdentityProviderTokenCheck)
+  { "ProviderName" :: Maybe (CognitoIdentityProviderName)
+  , "ClientId" :: Maybe (CognitoIdentityProviderClientId)
+  , "ServerSideTokenCheck" :: Maybe (CognitoIdentityProviderTokenCheck)
   }
 derive instance newtypeCognitoIdentityProvider :: Newtype CognitoIdentityProvider _
 derive instance repGenericCognitoIdentityProvider :: Generic CognitoIdentityProvider _
@@ -86,12 +85,12 @@ instance encodeCognitoIdentityProvider :: Encode CognitoIdentityProvider where e
 
 -- | Constructs CognitoIdentityProvider from required parameters
 newCognitoIdentityProvider :: CognitoIdentityProvider
-newCognitoIdentityProvider  = CognitoIdentityProvider { "ClientId": (NullOrUndefined Nothing), "ProviderName": (NullOrUndefined Nothing), "ServerSideTokenCheck": (NullOrUndefined Nothing) }
+newCognitoIdentityProvider  = CognitoIdentityProvider { "ClientId": Nothing, "ProviderName": Nothing, "ServerSideTokenCheck": Nothing }
 
 -- | Constructs CognitoIdentityProvider's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newCognitoIdentityProvider' :: ( { "ProviderName" :: NullOrUndefined (CognitoIdentityProviderName) , "ClientId" :: NullOrUndefined (CognitoIdentityProviderClientId) , "ServerSideTokenCheck" :: NullOrUndefined (CognitoIdentityProviderTokenCheck) } -> {"ProviderName" :: NullOrUndefined (CognitoIdentityProviderName) , "ClientId" :: NullOrUndefined (CognitoIdentityProviderClientId) , "ServerSideTokenCheck" :: NullOrUndefined (CognitoIdentityProviderTokenCheck) } ) -> CognitoIdentityProvider
-newCognitoIdentityProvider'  customize = (CognitoIdentityProvider <<< customize) { "ClientId": (NullOrUndefined Nothing), "ProviderName": (NullOrUndefined Nothing), "ServerSideTokenCheck": (NullOrUndefined Nothing) }
+newCognitoIdentityProvider' :: ( { "ProviderName" :: Maybe (CognitoIdentityProviderName) , "ClientId" :: Maybe (CognitoIdentityProviderClientId) , "ServerSideTokenCheck" :: Maybe (CognitoIdentityProviderTokenCheck) } -> {"ProviderName" :: Maybe (CognitoIdentityProviderName) , "ClientId" :: Maybe (CognitoIdentityProviderClientId) , "ServerSideTokenCheck" :: Maybe (CognitoIdentityProviderTokenCheck) } ) -> CognitoIdentityProvider
+newCognitoIdentityProvider'  customize = (CognitoIdentityProvider <<< customize) { "ClientId": Nothing, "ProviderName": Nothing, "ServerSideTokenCheck": Nothing }
 
 
 
@@ -133,7 +132,7 @@ instance encodeCognitoIdentityProviderTokenCheck :: Encode CognitoIdentityProvid
 
 -- | <p>Thrown if there are parallel requests to modify a resource.</p>
 newtype ConcurrentModificationException = ConcurrentModificationException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeConcurrentModificationException :: Newtype ConcurrentModificationException _
 derive instance repGenericConcurrentModificationException :: Generic ConcurrentModificationException _
@@ -143,12 +142,12 @@ instance encodeConcurrentModificationException :: Encode ConcurrentModificationE
 
 -- | Constructs ConcurrentModificationException from required parameters
 newConcurrentModificationException :: ConcurrentModificationException
-newConcurrentModificationException  = ConcurrentModificationException { "message": (NullOrUndefined Nothing) }
+newConcurrentModificationException  = ConcurrentModificationException { "message": Nothing }
 
 -- | Constructs ConcurrentModificationException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newConcurrentModificationException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> ConcurrentModificationException
-newConcurrentModificationException'  customize = (ConcurrentModificationException <<< customize) { "message": (NullOrUndefined Nothing) }
+newConcurrentModificationException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> ConcurrentModificationException
+newConcurrentModificationException'  customize = (ConcurrentModificationException <<< customize) { "message": Nothing }
 
 
 
@@ -156,11 +155,11 @@ newConcurrentModificationException'  customize = (ConcurrentModificationExceptio
 newtype CreateIdentityPoolInput = CreateIdentityPoolInput 
   { "IdentityPoolName" :: (IdentityPoolName)
   , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated)
-  , "SupportedLoginProviders" :: NullOrUndefined (IdentityProviders)
-  , "DeveloperProviderName" :: NullOrUndefined (DeveloperProviderName)
-  , "OpenIdConnectProviderARNs" :: NullOrUndefined (OIDCProviderList)
-  , "CognitoIdentityProviders" :: NullOrUndefined (CognitoIdentityProviderList)
-  , "SamlProviderARNs" :: NullOrUndefined (SAMLProviderList)
+  , "SupportedLoginProviders" :: Maybe (IdentityProviders)
+  , "DeveloperProviderName" :: Maybe (DeveloperProviderName)
+  , "OpenIdConnectProviderARNs" :: Maybe (OIDCProviderList)
+  , "CognitoIdentityProviders" :: Maybe (CognitoIdentityProviderList)
+  , "SamlProviderARNs" :: Maybe (SAMLProviderList)
   }
 derive instance newtypeCreateIdentityPoolInput :: Newtype CreateIdentityPoolInput _
 derive instance repGenericCreateIdentityPoolInput :: Generic CreateIdentityPoolInput _
@@ -170,21 +169,21 @@ instance encodeCreateIdentityPoolInput :: Encode CreateIdentityPoolInput where e
 
 -- | Constructs CreateIdentityPoolInput from required parameters
 newCreateIdentityPoolInput :: IdentityPoolUnauthenticated -> IdentityPoolName -> CreateIdentityPoolInput
-newCreateIdentityPoolInput _AllowUnauthenticatedIdentities _IdentityPoolName = CreateIdentityPoolInput { "AllowUnauthenticatedIdentities": _AllowUnauthenticatedIdentities, "IdentityPoolName": _IdentityPoolName, "CognitoIdentityProviders": (NullOrUndefined Nothing), "DeveloperProviderName": (NullOrUndefined Nothing), "OpenIdConnectProviderARNs": (NullOrUndefined Nothing), "SamlProviderARNs": (NullOrUndefined Nothing), "SupportedLoginProviders": (NullOrUndefined Nothing) }
+newCreateIdentityPoolInput _AllowUnauthenticatedIdentities _IdentityPoolName = CreateIdentityPoolInput { "AllowUnauthenticatedIdentities": _AllowUnauthenticatedIdentities, "IdentityPoolName": _IdentityPoolName, "CognitoIdentityProviders": Nothing, "DeveloperProviderName": Nothing, "OpenIdConnectProviderARNs": Nothing, "SamlProviderARNs": Nothing, "SupportedLoginProviders": Nothing }
 
 -- | Constructs CreateIdentityPoolInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newCreateIdentityPoolInput' :: IdentityPoolUnauthenticated -> IdentityPoolName -> ( { "IdentityPoolName" :: (IdentityPoolName) , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated) , "SupportedLoginProviders" :: NullOrUndefined (IdentityProviders) , "DeveloperProviderName" :: NullOrUndefined (DeveloperProviderName) , "OpenIdConnectProviderARNs" :: NullOrUndefined (OIDCProviderList) , "CognitoIdentityProviders" :: NullOrUndefined (CognitoIdentityProviderList) , "SamlProviderARNs" :: NullOrUndefined (SAMLProviderList) } -> {"IdentityPoolName" :: (IdentityPoolName) , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated) , "SupportedLoginProviders" :: NullOrUndefined (IdentityProviders) , "DeveloperProviderName" :: NullOrUndefined (DeveloperProviderName) , "OpenIdConnectProviderARNs" :: NullOrUndefined (OIDCProviderList) , "CognitoIdentityProviders" :: NullOrUndefined (CognitoIdentityProviderList) , "SamlProviderARNs" :: NullOrUndefined (SAMLProviderList) } ) -> CreateIdentityPoolInput
-newCreateIdentityPoolInput' _AllowUnauthenticatedIdentities _IdentityPoolName customize = (CreateIdentityPoolInput <<< customize) { "AllowUnauthenticatedIdentities": _AllowUnauthenticatedIdentities, "IdentityPoolName": _IdentityPoolName, "CognitoIdentityProviders": (NullOrUndefined Nothing), "DeveloperProviderName": (NullOrUndefined Nothing), "OpenIdConnectProviderARNs": (NullOrUndefined Nothing), "SamlProviderARNs": (NullOrUndefined Nothing), "SupportedLoginProviders": (NullOrUndefined Nothing) }
+newCreateIdentityPoolInput' :: IdentityPoolUnauthenticated -> IdentityPoolName -> ( { "IdentityPoolName" :: (IdentityPoolName) , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated) , "SupportedLoginProviders" :: Maybe (IdentityProviders) , "DeveloperProviderName" :: Maybe (DeveloperProviderName) , "OpenIdConnectProviderARNs" :: Maybe (OIDCProviderList) , "CognitoIdentityProviders" :: Maybe (CognitoIdentityProviderList) , "SamlProviderARNs" :: Maybe (SAMLProviderList) } -> {"IdentityPoolName" :: (IdentityPoolName) , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated) , "SupportedLoginProviders" :: Maybe (IdentityProviders) , "DeveloperProviderName" :: Maybe (DeveloperProviderName) , "OpenIdConnectProviderARNs" :: Maybe (OIDCProviderList) , "CognitoIdentityProviders" :: Maybe (CognitoIdentityProviderList) , "SamlProviderARNs" :: Maybe (SAMLProviderList) } ) -> CreateIdentityPoolInput
+newCreateIdentityPoolInput' _AllowUnauthenticatedIdentities _IdentityPoolName customize = (CreateIdentityPoolInput <<< customize) { "AllowUnauthenticatedIdentities": _AllowUnauthenticatedIdentities, "IdentityPoolName": _IdentityPoolName, "CognitoIdentityProviders": Nothing, "DeveloperProviderName": Nothing, "OpenIdConnectProviderARNs": Nothing, "SamlProviderARNs": Nothing, "SupportedLoginProviders": Nothing }
 
 
 
 -- | <p>Credentials for the provided identity ID.</p>
 newtype Credentials = Credentials 
-  { "AccessKeyId" :: NullOrUndefined (AccessKeyString)
-  , "SecretKey" :: NullOrUndefined (SecretKeyString)
-  , "SessionToken" :: NullOrUndefined (SessionTokenString)
-  , "Expiration" :: NullOrUndefined (DateType)
+  { "AccessKeyId" :: Maybe (AccessKeyString)
+  , "SecretKey" :: Maybe (SecretKeyString)
+  , "SessionToken" :: Maybe (SessionTokenString)
+  , "Expiration" :: Maybe (DateType)
   }
 derive instance newtypeCredentials :: Newtype Credentials _
 derive instance repGenericCredentials :: Generic Credentials _
@@ -194,12 +193,12 @@ instance encodeCredentials :: Encode Credentials where encode = genericEncode op
 
 -- | Constructs Credentials from required parameters
 newCredentials :: Credentials
-newCredentials  = Credentials { "AccessKeyId": (NullOrUndefined Nothing), "Expiration": (NullOrUndefined Nothing), "SecretKey": (NullOrUndefined Nothing), "SessionToken": (NullOrUndefined Nothing) }
+newCredentials  = Credentials { "AccessKeyId": Nothing, "Expiration": Nothing, "SecretKey": Nothing, "SessionToken": Nothing }
 
 -- | Constructs Credentials's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newCredentials' :: ( { "AccessKeyId" :: NullOrUndefined (AccessKeyString) , "SecretKey" :: NullOrUndefined (SecretKeyString) , "SessionToken" :: NullOrUndefined (SessionTokenString) , "Expiration" :: NullOrUndefined (DateType) } -> {"AccessKeyId" :: NullOrUndefined (AccessKeyString) , "SecretKey" :: NullOrUndefined (SecretKeyString) , "SessionToken" :: NullOrUndefined (SessionTokenString) , "Expiration" :: NullOrUndefined (DateType) } ) -> Credentials
-newCredentials'  customize = (Credentials <<< customize) { "AccessKeyId": (NullOrUndefined Nothing), "Expiration": (NullOrUndefined Nothing), "SecretKey": (NullOrUndefined Nothing), "SessionToken": (NullOrUndefined Nothing) }
+newCredentials' :: ( { "AccessKeyId" :: Maybe (AccessKeyString) , "SecretKey" :: Maybe (SecretKeyString) , "SessionToken" :: Maybe (SessionTokenString) , "Expiration" :: Maybe (DateType) } -> {"AccessKeyId" :: Maybe (AccessKeyString) , "SecretKey" :: Maybe (SecretKeyString) , "SessionToken" :: Maybe (SessionTokenString) , "Expiration" :: Maybe (DateType) } ) -> Credentials
+newCredentials'  customize = (Credentials <<< customize) { "AccessKeyId": Nothing, "Expiration": Nothing, "SecretKey": Nothing, "SessionToken": Nothing }
 
 
 
@@ -235,7 +234,7 @@ newDeleteIdentitiesInput' _IdentityIdsToDelete customize = (DeleteIdentitiesInpu
 
 -- | <p>Returned in response to a successful <code>DeleteIdentities</code> operation.</p>
 newtype DeleteIdentitiesResponse = DeleteIdentitiesResponse 
-  { "UnprocessedIdentityIds" :: NullOrUndefined (UnprocessedIdentityIdList)
+  { "UnprocessedIdentityIds" :: Maybe (UnprocessedIdentityIdList)
   }
 derive instance newtypeDeleteIdentitiesResponse :: Newtype DeleteIdentitiesResponse _
 derive instance repGenericDeleteIdentitiesResponse :: Generic DeleteIdentitiesResponse _
@@ -245,12 +244,12 @@ instance encodeDeleteIdentitiesResponse :: Encode DeleteIdentitiesResponse where
 
 -- | Constructs DeleteIdentitiesResponse from required parameters
 newDeleteIdentitiesResponse :: DeleteIdentitiesResponse
-newDeleteIdentitiesResponse  = DeleteIdentitiesResponse { "UnprocessedIdentityIds": (NullOrUndefined Nothing) }
+newDeleteIdentitiesResponse  = DeleteIdentitiesResponse { "UnprocessedIdentityIds": Nothing }
 
 -- | Constructs DeleteIdentitiesResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDeleteIdentitiesResponse' :: ( { "UnprocessedIdentityIds" :: NullOrUndefined (UnprocessedIdentityIdList) } -> {"UnprocessedIdentityIds" :: NullOrUndefined (UnprocessedIdentityIdList) } ) -> DeleteIdentitiesResponse
-newDeleteIdentitiesResponse'  customize = (DeleteIdentitiesResponse <<< customize) { "UnprocessedIdentityIds": (NullOrUndefined Nothing) }
+newDeleteIdentitiesResponse' :: ( { "UnprocessedIdentityIds" :: Maybe (UnprocessedIdentityIdList) } -> {"UnprocessedIdentityIds" :: Maybe (UnprocessedIdentityIdList) } ) -> DeleteIdentitiesResponse
+newDeleteIdentitiesResponse'  customize = (DeleteIdentitiesResponse <<< customize) { "UnprocessedIdentityIds": Nothing }
 
 
 
@@ -328,7 +327,7 @@ instance encodeDeveloperProviderName :: Encode DeveloperProviderName where encod
 
 -- | <p>The provided developer user identifier is already registered with Cognito under a different identity ID.</p>
 newtype DeveloperUserAlreadyRegisteredException = DeveloperUserAlreadyRegisteredException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeDeveloperUserAlreadyRegisteredException :: Newtype DeveloperUserAlreadyRegisteredException _
 derive instance repGenericDeveloperUserAlreadyRegisteredException :: Generic DeveloperUserAlreadyRegisteredException _
@@ -338,12 +337,12 @@ instance encodeDeveloperUserAlreadyRegisteredException :: Encode DeveloperUserAl
 
 -- | Constructs DeveloperUserAlreadyRegisteredException from required parameters
 newDeveloperUserAlreadyRegisteredException :: DeveloperUserAlreadyRegisteredException
-newDeveloperUserAlreadyRegisteredException  = DeveloperUserAlreadyRegisteredException { "message": (NullOrUndefined Nothing) }
+newDeveloperUserAlreadyRegisteredException  = DeveloperUserAlreadyRegisteredException { "message": Nothing }
 
 -- | Constructs DeveloperUserAlreadyRegisteredException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newDeveloperUserAlreadyRegisteredException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> DeveloperUserAlreadyRegisteredException
-newDeveloperUserAlreadyRegisteredException'  customize = (DeveloperUserAlreadyRegisteredException <<< customize) { "message": (NullOrUndefined Nothing) }
+newDeveloperUserAlreadyRegisteredException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> DeveloperUserAlreadyRegisteredException
+newDeveloperUserAlreadyRegisteredException'  customize = (DeveloperUserAlreadyRegisteredException <<< customize) { "message": Nothing }
 
 
 
@@ -376,7 +375,7 @@ instance encodeErrorCode :: Encode ErrorCode where encode = genericEncode option
 
 -- | <p>An exception thrown when a dependent service such as Facebook or Twitter is not responding</p>
 newtype ExternalServiceException = ExternalServiceException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeExternalServiceException :: Newtype ExternalServiceException _
 derive instance repGenericExternalServiceException :: Generic ExternalServiceException _
@@ -386,20 +385,20 @@ instance encodeExternalServiceException :: Encode ExternalServiceException where
 
 -- | Constructs ExternalServiceException from required parameters
 newExternalServiceException :: ExternalServiceException
-newExternalServiceException  = ExternalServiceException { "message": (NullOrUndefined Nothing) }
+newExternalServiceException  = ExternalServiceException { "message": Nothing }
 
 -- | Constructs ExternalServiceException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newExternalServiceException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> ExternalServiceException
-newExternalServiceException'  customize = (ExternalServiceException <<< customize) { "message": (NullOrUndefined Nothing) }
+newExternalServiceException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> ExternalServiceException
+newExternalServiceException'  customize = (ExternalServiceException <<< customize) { "message": Nothing }
 
 
 
 -- | <p>Input to the <code>GetCredentialsForIdentity</code> action.</p>
 newtype GetCredentialsForIdentityInput = GetCredentialsForIdentityInput 
   { "IdentityId" :: (IdentityId)
-  , "Logins" :: NullOrUndefined (LoginsMap)
-  , "CustomRoleArn" :: NullOrUndefined (ARNString)
+  , "Logins" :: Maybe (LoginsMap)
+  , "CustomRoleArn" :: Maybe (ARNString)
   }
 derive instance newtypeGetCredentialsForIdentityInput :: Newtype GetCredentialsForIdentityInput _
 derive instance repGenericGetCredentialsForIdentityInput :: Generic GetCredentialsForIdentityInput _
@@ -409,19 +408,19 @@ instance encodeGetCredentialsForIdentityInput :: Encode GetCredentialsForIdentit
 
 -- | Constructs GetCredentialsForIdentityInput from required parameters
 newGetCredentialsForIdentityInput :: IdentityId -> GetCredentialsForIdentityInput
-newGetCredentialsForIdentityInput _IdentityId = GetCredentialsForIdentityInput { "IdentityId": _IdentityId, "CustomRoleArn": (NullOrUndefined Nothing), "Logins": (NullOrUndefined Nothing) }
+newGetCredentialsForIdentityInput _IdentityId = GetCredentialsForIdentityInput { "IdentityId": _IdentityId, "CustomRoleArn": Nothing, "Logins": Nothing }
 
 -- | Constructs GetCredentialsForIdentityInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetCredentialsForIdentityInput' :: IdentityId -> ( { "IdentityId" :: (IdentityId) , "Logins" :: NullOrUndefined (LoginsMap) , "CustomRoleArn" :: NullOrUndefined (ARNString) } -> {"IdentityId" :: (IdentityId) , "Logins" :: NullOrUndefined (LoginsMap) , "CustomRoleArn" :: NullOrUndefined (ARNString) } ) -> GetCredentialsForIdentityInput
-newGetCredentialsForIdentityInput' _IdentityId customize = (GetCredentialsForIdentityInput <<< customize) { "IdentityId": _IdentityId, "CustomRoleArn": (NullOrUndefined Nothing), "Logins": (NullOrUndefined Nothing) }
+newGetCredentialsForIdentityInput' :: IdentityId -> ( { "IdentityId" :: (IdentityId) , "Logins" :: Maybe (LoginsMap) , "CustomRoleArn" :: Maybe (ARNString) } -> {"IdentityId" :: (IdentityId) , "Logins" :: Maybe (LoginsMap) , "CustomRoleArn" :: Maybe (ARNString) } ) -> GetCredentialsForIdentityInput
+newGetCredentialsForIdentityInput' _IdentityId customize = (GetCredentialsForIdentityInput <<< customize) { "IdentityId": _IdentityId, "CustomRoleArn": Nothing, "Logins": Nothing }
 
 
 
 -- | <p>Returned in response to a successful <code>GetCredentialsForIdentity</code> operation.</p>
 newtype GetCredentialsForIdentityResponse = GetCredentialsForIdentityResponse 
-  { "IdentityId" :: NullOrUndefined (IdentityId)
-  , "Credentials" :: NullOrUndefined (Credentials)
+  { "IdentityId" :: Maybe (IdentityId)
+  , "Credentials" :: Maybe (Credentials)
   }
 derive instance newtypeGetCredentialsForIdentityResponse :: Newtype GetCredentialsForIdentityResponse _
 derive instance repGenericGetCredentialsForIdentityResponse :: Generic GetCredentialsForIdentityResponse _
@@ -431,20 +430,20 @@ instance encodeGetCredentialsForIdentityResponse :: Encode GetCredentialsForIden
 
 -- | Constructs GetCredentialsForIdentityResponse from required parameters
 newGetCredentialsForIdentityResponse :: GetCredentialsForIdentityResponse
-newGetCredentialsForIdentityResponse  = GetCredentialsForIdentityResponse { "Credentials": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing) }
+newGetCredentialsForIdentityResponse  = GetCredentialsForIdentityResponse { "Credentials": Nothing, "IdentityId": Nothing }
 
 -- | Constructs GetCredentialsForIdentityResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetCredentialsForIdentityResponse' :: ( { "IdentityId" :: NullOrUndefined (IdentityId) , "Credentials" :: NullOrUndefined (Credentials) } -> {"IdentityId" :: NullOrUndefined (IdentityId) , "Credentials" :: NullOrUndefined (Credentials) } ) -> GetCredentialsForIdentityResponse
-newGetCredentialsForIdentityResponse'  customize = (GetCredentialsForIdentityResponse <<< customize) { "Credentials": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing) }
+newGetCredentialsForIdentityResponse' :: ( { "IdentityId" :: Maybe (IdentityId) , "Credentials" :: Maybe (Credentials) } -> {"IdentityId" :: Maybe (IdentityId) , "Credentials" :: Maybe (Credentials) } ) -> GetCredentialsForIdentityResponse
+newGetCredentialsForIdentityResponse'  customize = (GetCredentialsForIdentityResponse <<< customize) { "Credentials": Nothing, "IdentityId": Nothing }
 
 
 
 -- | <p>Input to the GetId action.</p>
 newtype GetIdInput = GetIdInput 
-  { "AccountId" :: NullOrUndefined (AccountId)
+  { "AccountId" :: Maybe (AccountId)
   , "IdentityPoolId" :: (IdentityPoolId)
-  , "Logins" :: NullOrUndefined (LoginsMap)
+  , "Logins" :: Maybe (LoginsMap)
   }
 derive instance newtypeGetIdInput :: Newtype GetIdInput _
 derive instance repGenericGetIdInput :: Generic GetIdInput _
@@ -454,18 +453,18 @@ instance encodeGetIdInput :: Encode GetIdInput where encode = genericEncode opti
 
 -- | Constructs GetIdInput from required parameters
 newGetIdInput :: IdentityPoolId -> GetIdInput
-newGetIdInput _IdentityPoolId = GetIdInput { "IdentityPoolId": _IdentityPoolId, "AccountId": (NullOrUndefined Nothing), "Logins": (NullOrUndefined Nothing) }
+newGetIdInput _IdentityPoolId = GetIdInput { "IdentityPoolId": _IdentityPoolId, "AccountId": Nothing, "Logins": Nothing }
 
 -- | Constructs GetIdInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetIdInput' :: IdentityPoolId -> ( { "AccountId" :: NullOrUndefined (AccountId) , "IdentityPoolId" :: (IdentityPoolId) , "Logins" :: NullOrUndefined (LoginsMap) } -> {"AccountId" :: NullOrUndefined (AccountId) , "IdentityPoolId" :: (IdentityPoolId) , "Logins" :: NullOrUndefined (LoginsMap) } ) -> GetIdInput
-newGetIdInput' _IdentityPoolId customize = (GetIdInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "AccountId": (NullOrUndefined Nothing), "Logins": (NullOrUndefined Nothing) }
+newGetIdInput' :: IdentityPoolId -> ( { "AccountId" :: Maybe (AccountId) , "IdentityPoolId" :: (IdentityPoolId) , "Logins" :: Maybe (LoginsMap) } -> {"AccountId" :: Maybe (AccountId) , "IdentityPoolId" :: (IdentityPoolId) , "Logins" :: Maybe (LoginsMap) } ) -> GetIdInput
+newGetIdInput' _IdentityPoolId customize = (GetIdInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "AccountId": Nothing, "Logins": Nothing }
 
 
 
 -- | <p>Returned in response to a GetId request.</p>
 newtype GetIdResponse = GetIdResponse 
-  { "IdentityId" :: NullOrUndefined (IdentityId)
+  { "IdentityId" :: Maybe (IdentityId)
   }
 derive instance newtypeGetIdResponse :: Newtype GetIdResponse _
 derive instance repGenericGetIdResponse :: Generic GetIdResponse _
@@ -475,12 +474,12 @@ instance encodeGetIdResponse :: Encode GetIdResponse where encode = genericEncod
 
 -- | Constructs GetIdResponse from required parameters
 newGetIdResponse :: GetIdResponse
-newGetIdResponse  = GetIdResponse { "IdentityId": (NullOrUndefined Nothing) }
+newGetIdResponse  = GetIdResponse { "IdentityId": Nothing }
 
 -- | Constructs GetIdResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetIdResponse' :: ( { "IdentityId" :: NullOrUndefined (IdentityId) } -> {"IdentityId" :: NullOrUndefined (IdentityId) } ) -> GetIdResponse
-newGetIdResponse'  customize = (GetIdResponse <<< customize) { "IdentityId": (NullOrUndefined Nothing) }
+newGetIdResponse' :: ( { "IdentityId" :: Maybe (IdentityId) } -> {"IdentityId" :: Maybe (IdentityId) } ) -> GetIdResponse
+newGetIdResponse'  customize = (GetIdResponse <<< customize) { "IdentityId": Nothing }
 
 
 
@@ -507,9 +506,9 @@ newGetIdentityPoolRolesInput' _IdentityPoolId customize = (GetIdentityPoolRolesI
 
 -- | <p>Returned in response to a successful <code>GetIdentityPoolRoles</code> operation.</p>
 newtype GetIdentityPoolRolesResponse = GetIdentityPoolRolesResponse 
-  { "IdentityPoolId" :: NullOrUndefined (IdentityPoolId)
-  , "Roles" :: NullOrUndefined (RolesMap)
-  , "RoleMappings" :: NullOrUndefined (RoleMappingMap)
+  { "IdentityPoolId" :: Maybe (IdentityPoolId)
+  , "Roles" :: Maybe (RolesMap)
+  , "RoleMappings" :: Maybe (RoleMappingMap)
   }
 derive instance newtypeGetIdentityPoolRolesResponse :: Newtype GetIdentityPoolRolesResponse _
 derive instance repGenericGetIdentityPoolRolesResponse :: Generic GetIdentityPoolRolesResponse _
@@ -519,21 +518,21 @@ instance encodeGetIdentityPoolRolesResponse :: Encode GetIdentityPoolRolesRespon
 
 -- | Constructs GetIdentityPoolRolesResponse from required parameters
 newGetIdentityPoolRolesResponse :: GetIdentityPoolRolesResponse
-newGetIdentityPoolRolesResponse  = GetIdentityPoolRolesResponse { "IdentityPoolId": (NullOrUndefined Nothing), "RoleMappings": (NullOrUndefined Nothing), "Roles": (NullOrUndefined Nothing) }
+newGetIdentityPoolRolesResponse  = GetIdentityPoolRolesResponse { "IdentityPoolId": Nothing, "RoleMappings": Nothing, "Roles": Nothing }
 
 -- | Constructs GetIdentityPoolRolesResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetIdentityPoolRolesResponse' :: ( { "IdentityPoolId" :: NullOrUndefined (IdentityPoolId) , "Roles" :: NullOrUndefined (RolesMap) , "RoleMappings" :: NullOrUndefined (RoleMappingMap) } -> {"IdentityPoolId" :: NullOrUndefined (IdentityPoolId) , "Roles" :: NullOrUndefined (RolesMap) , "RoleMappings" :: NullOrUndefined (RoleMappingMap) } ) -> GetIdentityPoolRolesResponse
-newGetIdentityPoolRolesResponse'  customize = (GetIdentityPoolRolesResponse <<< customize) { "IdentityPoolId": (NullOrUndefined Nothing), "RoleMappings": (NullOrUndefined Nothing), "Roles": (NullOrUndefined Nothing) }
+newGetIdentityPoolRolesResponse' :: ( { "IdentityPoolId" :: Maybe (IdentityPoolId) , "Roles" :: Maybe (RolesMap) , "RoleMappings" :: Maybe (RoleMappingMap) } -> {"IdentityPoolId" :: Maybe (IdentityPoolId) , "Roles" :: Maybe (RolesMap) , "RoleMappings" :: Maybe (RoleMappingMap) } ) -> GetIdentityPoolRolesResponse
+newGetIdentityPoolRolesResponse'  customize = (GetIdentityPoolRolesResponse <<< customize) { "IdentityPoolId": Nothing, "RoleMappings": Nothing, "Roles": Nothing }
 
 
 
 -- | <p>Input to the <code>GetOpenIdTokenForDeveloperIdentity</code> action.</p>
 newtype GetOpenIdTokenForDeveloperIdentityInput = GetOpenIdTokenForDeveloperIdentityInput 
   { "IdentityPoolId" :: (IdentityPoolId)
-  , "IdentityId" :: NullOrUndefined (IdentityId)
+  , "IdentityId" :: Maybe (IdentityId)
   , "Logins" :: (LoginsMap)
-  , "TokenDuration" :: NullOrUndefined (TokenDuration)
+  , "TokenDuration" :: Maybe (TokenDuration)
   }
 derive instance newtypeGetOpenIdTokenForDeveloperIdentityInput :: Newtype GetOpenIdTokenForDeveloperIdentityInput _
 derive instance repGenericGetOpenIdTokenForDeveloperIdentityInput :: Generic GetOpenIdTokenForDeveloperIdentityInput _
@@ -543,19 +542,19 @@ instance encodeGetOpenIdTokenForDeveloperIdentityInput :: Encode GetOpenIdTokenF
 
 -- | Constructs GetOpenIdTokenForDeveloperIdentityInput from required parameters
 newGetOpenIdTokenForDeveloperIdentityInput :: IdentityPoolId -> LoginsMap -> GetOpenIdTokenForDeveloperIdentityInput
-newGetOpenIdTokenForDeveloperIdentityInput _IdentityPoolId _Logins = GetOpenIdTokenForDeveloperIdentityInput { "IdentityPoolId": _IdentityPoolId, "Logins": _Logins, "IdentityId": (NullOrUndefined Nothing), "TokenDuration": (NullOrUndefined Nothing) }
+newGetOpenIdTokenForDeveloperIdentityInput _IdentityPoolId _Logins = GetOpenIdTokenForDeveloperIdentityInput { "IdentityPoolId": _IdentityPoolId, "Logins": _Logins, "IdentityId": Nothing, "TokenDuration": Nothing }
 
 -- | Constructs GetOpenIdTokenForDeveloperIdentityInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetOpenIdTokenForDeveloperIdentityInput' :: IdentityPoolId -> LoginsMap -> ( { "IdentityPoolId" :: (IdentityPoolId) , "IdentityId" :: NullOrUndefined (IdentityId) , "Logins" :: (LoginsMap) , "TokenDuration" :: NullOrUndefined (TokenDuration) } -> {"IdentityPoolId" :: (IdentityPoolId) , "IdentityId" :: NullOrUndefined (IdentityId) , "Logins" :: (LoginsMap) , "TokenDuration" :: NullOrUndefined (TokenDuration) } ) -> GetOpenIdTokenForDeveloperIdentityInput
-newGetOpenIdTokenForDeveloperIdentityInput' _IdentityPoolId _Logins customize = (GetOpenIdTokenForDeveloperIdentityInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "Logins": _Logins, "IdentityId": (NullOrUndefined Nothing), "TokenDuration": (NullOrUndefined Nothing) }
+newGetOpenIdTokenForDeveloperIdentityInput' :: IdentityPoolId -> LoginsMap -> ( { "IdentityPoolId" :: (IdentityPoolId) , "IdentityId" :: Maybe (IdentityId) , "Logins" :: (LoginsMap) , "TokenDuration" :: Maybe (TokenDuration) } -> {"IdentityPoolId" :: (IdentityPoolId) , "IdentityId" :: Maybe (IdentityId) , "Logins" :: (LoginsMap) , "TokenDuration" :: Maybe (TokenDuration) } ) -> GetOpenIdTokenForDeveloperIdentityInput
+newGetOpenIdTokenForDeveloperIdentityInput' _IdentityPoolId _Logins customize = (GetOpenIdTokenForDeveloperIdentityInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "Logins": _Logins, "IdentityId": Nothing, "TokenDuration": Nothing }
 
 
 
 -- | <p>Returned in response to a successful <code>GetOpenIdTokenForDeveloperIdentity</code> request.</p>
 newtype GetOpenIdTokenForDeveloperIdentityResponse = GetOpenIdTokenForDeveloperIdentityResponse 
-  { "IdentityId" :: NullOrUndefined (IdentityId)
-  , "Token" :: NullOrUndefined (OIDCToken)
+  { "IdentityId" :: Maybe (IdentityId)
+  , "Token" :: Maybe (OIDCToken)
   }
 derive instance newtypeGetOpenIdTokenForDeveloperIdentityResponse :: Newtype GetOpenIdTokenForDeveloperIdentityResponse _
 derive instance repGenericGetOpenIdTokenForDeveloperIdentityResponse :: Generic GetOpenIdTokenForDeveloperIdentityResponse _
@@ -565,19 +564,19 @@ instance encodeGetOpenIdTokenForDeveloperIdentityResponse :: Encode GetOpenIdTok
 
 -- | Constructs GetOpenIdTokenForDeveloperIdentityResponse from required parameters
 newGetOpenIdTokenForDeveloperIdentityResponse :: GetOpenIdTokenForDeveloperIdentityResponse
-newGetOpenIdTokenForDeveloperIdentityResponse  = GetOpenIdTokenForDeveloperIdentityResponse { "IdentityId": (NullOrUndefined Nothing), "Token": (NullOrUndefined Nothing) }
+newGetOpenIdTokenForDeveloperIdentityResponse  = GetOpenIdTokenForDeveloperIdentityResponse { "IdentityId": Nothing, "Token": Nothing }
 
 -- | Constructs GetOpenIdTokenForDeveloperIdentityResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetOpenIdTokenForDeveloperIdentityResponse' :: ( { "IdentityId" :: NullOrUndefined (IdentityId) , "Token" :: NullOrUndefined (OIDCToken) } -> {"IdentityId" :: NullOrUndefined (IdentityId) , "Token" :: NullOrUndefined (OIDCToken) } ) -> GetOpenIdTokenForDeveloperIdentityResponse
-newGetOpenIdTokenForDeveloperIdentityResponse'  customize = (GetOpenIdTokenForDeveloperIdentityResponse <<< customize) { "IdentityId": (NullOrUndefined Nothing), "Token": (NullOrUndefined Nothing) }
+newGetOpenIdTokenForDeveloperIdentityResponse' :: ( { "IdentityId" :: Maybe (IdentityId) , "Token" :: Maybe (OIDCToken) } -> {"IdentityId" :: Maybe (IdentityId) , "Token" :: Maybe (OIDCToken) } ) -> GetOpenIdTokenForDeveloperIdentityResponse
+newGetOpenIdTokenForDeveloperIdentityResponse'  customize = (GetOpenIdTokenForDeveloperIdentityResponse <<< customize) { "IdentityId": Nothing, "Token": Nothing }
 
 
 
 -- | <p>Input to the GetOpenIdToken action.</p>
 newtype GetOpenIdTokenInput = GetOpenIdTokenInput 
   { "IdentityId" :: (IdentityId)
-  , "Logins" :: NullOrUndefined (LoginsMap)
+  , "Logins" :: Maybe (LoginsMap)
   }
 derive instance newtypeGetOpenIdTokenInput :: Newtype GetOpenIdTokenInput _
 derive instance repGenericGetOpenIdTokenInput :: Generic GetOpenIdTokenInput _
@@ -587,19 +586,19 @@ instance encodeGetOpenIdTokenInput :: Encode GetOpenIdTokenInput where encode = 
 
 -- | Constructs GetOpenIdTokenInput from required parameters
 newGetOpenIdTokenInput :: IdentityId -> GetOpenIdTokenInput
-newGetOpenIdTokenInput _IdentityId = GetOpenIdTokenInput { "IdentityId": _IdentityId, "Logins": (NullOrUndefined Nothing) }
+newGetOpenIdTokenInput _IdentityId = GetOpenIdTokenInput { "IdentityId": _IdentityId, "Logins": Nothing }
 
 -- | Constructs GetOpenIdTokenInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetOpenIdTokenInput' :: IdentityId -> ( { "IdentityId" :: (IdentityId) , "Logins" :: NullOrUndefined (LoginsMap) } -> {"IdentityId" :: (IdentityId) , "Logins" :: NullOrUndefined (LoginsMap) } ) -> GetOpenIdTokenInput
-newGetOpenIdTokenInput' _IdentityId customize = (GetOpenIdTokenInput <<< customize) { "IdentityId": _IdentityId, "Logins": (NullOrUndefined Nothing) }
+newGetOpenIdTokenInput' :: IdentityId -> ( { "IdentityId" :: (IdentityId) , "Logins" :: Maybe (LoginsMap) } -> {"IdentityId" :: (IdentityId) , "Logins" :: Maybe (LoginsMap) } ) -> GetOpenIdTokenInput
+newGetOpenIdTokenInput' _IdentityId customize = (GetOpenIdTokenInput <<< customize) { "IdentityId": _IdentityId, "Logins": Nothing }
 
 
 
 -- | <p>Returned in response to a successful GetOpenIdToken request.</p>
 newtype GetOpenIdTokenResponse = GetOpenIdTokenResponse 
-  { "IdentityId" :: NullOrUndefined (IdentityId)
-  , "Token" :: NullOrUndefined (OIDCToken)
+  { "IdentityId" :: Maybe (IdentityId)
+  , "Token" :: Maybe (OIDCToken)
   }
 derive instance newtypeGetOpenIdTokenResponse :: Newtype GetOpenIdTokenResponse _
 derive instance repGenericGetOpenIdTokenResponse :: Generic GetOpenIdTokenResponse _
@@ -609,12 +608,12 @@ instance encodeGetOpenIdTokenResponse :: Encode GetOpenIdTokenResponse where enc
 
 -- | Constructs GetOpenIdTokenResponse from required parameters
 newGetOpenIdTokenResponse :: GetOpenIdTokenResponse
-newGetOpenIdTokenResponse  = GetOpenIdTokenResponse { "IdentityId": (NullOrUndefined Nothing), "Token": (NullOrUndefined Nothing) }
+newGetOpenIdTokenResponse  = GetOpenIdTokenResponse { "IdentityId": Nothing, "Token": Nothing }
 
 -- | Constructs GetOpenIdTokenResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newGetOpenIdTokenResponse' :: ( { "IdentityId" :: NullOrUndefined (IdentityId) , "Token" :: NullOrUndefined (OIDCToken) } -> {"IdentityId" :: NullOrUndefined (IdentityId) , "Token" :: NullOrUndefined (OIDCToken) } ) -> GetOpenIdTokenResponse
-newGetOpenIdTokenResponse'  customize = (GetOpenIdTokenResponse <<< customize) { "IdentityId": (NullOrUndefined Nothing), "Token": (NullOrUndefined Nothing) }
+newGetOpenIdTokenResponse' :: ( { "IdentityId" :: Maybe (IdentityId) , "Token" :: Maybe (OIDCToken) } -> {"IdentityId" :: Maybe (IdentityId) , "Token" :: Maybe (OIDCToken) } ) -> GetOpenIdTokenResponse
+newGetOpenIdTokenResponse'  customize = (GetOpenIdTokenResponse <<< customize) { "IdentityId": Nothing, "Token": Nothing }
 
 
 
@@ -638,10 +637,10 @@ instance encodeIdentitiesList :: Encode IdentitiesList where encode = genericEnc
 
 -- | <p>A description of the identity.</p>
 newtype IdentityDescription = IdentityDescription 
-  { "IdentityId" :: NullOrUndefined (IdentityId)
-  , "Logins" :: NullOrUndefined (LoginsList)
-  , "CreationDate" :: NullOrUndefined (DateType)
-  , "LastModifiedDate" :: NullOrUndefined (DateType)
+  { "IdentityId" :: Maybe (IdentityId)
+  , "Logins" :: Maybe (LoginsList)
+  , "CreationDate" :: Maybe (DateType)
+  , "LastModifiedDate" :: Maybe (DateType)
   }
 derive instance newtypeIdentityDescription :: Newtype IdentityDescription _
 derive instance repGenericIdentityDescription :: Generic IdentityDescription _
@@ -651,12 +650,12 @@ instance encodeIdentityDescription :: Encode IdentityDescription where encode = 
 
 -- | Constructs IdentityDescription from required parameters
 newIdentityDescription :: IdentityDescription
-newIdentityDescription  = IdentityDescription { "CreationDate": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing), "LastModifiedDate": (NullOrUndefined Nothing), "Logins": (NullOrUndefined Nothing) }
+newIdentityDescription  = IdentityDescription { "CreationDate": Nothing, "IdentityId": Nothing, "LastModifiedDate": Nothing, "Logins": Nothing }
 
 -- | Constructs IdentityDescription's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newIdentityDescription' :: ( { "IdentityId" :: NullOrUndefined (IdentityId) , "Logins" :: NullOrUndefined (LoginsList) , "CreationDate" :: NullOrUndefined (DateType) , "LastModifiedDate" :: NullOrUndefined (DateType) } -> {"IdentityId" :: NullOrUndefined (IdentityId) , "Logins" :: NullOrUndefined (LoginsList) , "CreationDate" :: NullOrUndefined (DateType) , "LastModifiedDate" :: NullOrUndefined (DateType) } ) -> IdentityDescription
-newIdentityDescription'  customize = (IdentityDescription <<< customize) { "CreationDate": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing), "LastModifiedDate": (NullOrUndefined Nothing), "Logins": (NullOrUndefined Nothing) }
+newIdentityDescription' :: ( { "IdentityId" :: Maybe (IdentityId) , "Logins" :: Maybe (LoginsList) , "CreationDate" :: Maybe (DateType) , "LastModifiedDate" :: Maybe (DateType) } -> {"IdentityId" :: Maybe (IdentityId) , "Logins" :: Maybe (LoginsList) , "CreationDate" :: Maybe (DateType) , "LastModifiedDate" :: Maybe (DateType) } ) -> IdentityDescription
+newIdentityDescription'  customize = (IdentityDescription <<< customize) { "CreationDate": Nothing, "IdentityId": Nothing, "LastModifiedDate": Nothing, "Logins": Nothing }
 
 
 
@@ -683,11 +682,11 @@ newtype IdentityPool = IdentityPool
   { "IdentityPoolId" :: (IdentityPoolId)
   , "IdentityPoolName" :: (IdentityPoolName)
   , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated)
-  , "SupportedLoginProviders" :: NullOrUndefined (IdentityProviders)
-  , "DeveloperProviderName" :: NullOrUndefined (DeveloperProviderName)
-  , "OpenIdConnectProviderARNs" :: NullOrUndefined (OIDCProviderList)
-  , "CognitoIdentityProviders" :: NullOrUndefined (CognitoIdentityProviderList)
-  , "SamlProviderARNs" :: NullOrUndefined (SAMLProviderList)
+  , "SupportedLoginProviders" :: Maybe (IdentityProviders)
+  , "DeveloperProviderName" :: Maybe (DeveloperProviderName)
+  , "OpenIdConnectProviderARNs" :: Maybe (OIDCProviderList)
+  , "CognitoIdentityProviders" :: Maybe (CognitoIdentityProviderList)
+  , "SamlProviderARNs" :: Maybe (SAMLProviderList)
   }
 derive instance newtypeIdentityPool :: Newtype IdentityPool _
 derive instance repGenericIdentityPool :: Generic IdentityPool _
@@ -697,12 +696,12 @@ instance encodeIdentityPool :: Encode IdentityPool where encode = genericEncode 
 
 -- | Constructs IdentityPool from required parameters
 newIdentityPool :: IdentityPoolUnauthenticated -> IdentityPoolId -> IdentityPoolName -> IdentityPool
-newIdentityPool _AllowUnauthenticatedIdentities _IdentityPoolId _IdentityPoolName = IdentityPool { "AllowUnauthenticatedIdentities": _AllowUnauthenticatedIdentities, "IdentityPoolId": _IdentityPoolId, "IdentityPoolName": _IdentityPoolName, "CognitoIdentityProviders": (NullOrUndefined Nothing), "DeveloperProviderName": (NullOrUndefined Nothing), "OpenIdConnectProviderARNs": (NullOrUndefined Nothing), "SamlProviderARNs": (NullOrUndefined Nothing), "SupportedLoginProviders": (NullOrUndefined Nothing) }
+newIdentityPool _AllowUnauthenticatedIdentities _IdentityPoolId _IdentityPoolName = IdentityPool { "AllowUnauthenticatedIdentities": _AllowUnauthenticatedIdentities, "IdentityPoolId": _IdentityPoolId, "IdentityPoolName": _IdentityPoolName, "CognitoIdentityProviders": Nothing, "DeveloperProviderName": Nothing, "OpenIdConnectProviderARNs": Nothing, "SamlProviderARNs": Nothing, "SupportedLoginProviders": Nothing }
 
 -- | Constructs IdentityPool's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newIdentityPool' :: IdentityPoolUnauthenticated -> IdentityPoolId -> IdentityPoolName -> ( { "IdentityPoolId" :: (IdentityPoolId) , "IdentityPoolName" :: (IdentityPoolName) , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated) , "SupportedLoginProviders" :: NullOrUndefined (IdentityProviders) , "DeveloperProviderName" :: NullOrUndefined (DeveloperProviderName) , "OpenIdConnectProviderARNs" :: NullOrUndefined (OIDCProviderList) , "CognitoIdentityProviders" :: NullOrUndefined (CognitoIdentityProviderList) , "SamlProviderARNs" :: NullOrUndefined (SAMLProviderList) } -> {"IdentityPoolId" :: (IdentityPoolId) , "IdentityPoolName" :: (IdentityPoolName) , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated) , "SupportedLoginProviders" :: NullOrUndefined (IdentityProviders) , "DeveloperProviderName" :: NullOrUndefined (DeveloperProviderName) , "OpenIdConnectProviderARNs" :: NullOrUndefined (OIDCProviderList) , "CognitoIdentityProviders" :: NullOrUndefined (CognitoIdentityProviderList) , "SamlProviderARNs" :: NullOrUndefined (SAMLProviderList) } ) -> IdentityPool
-newIdentityPool' _AllowUnauthenticatedIdentities _IdentityPoolId _IdentityPoolName customize = (IdentityPool <<< customize) { "AllowUnauthenticatedIdentities": _AllowUnauthenticatedIdentities, "IdentityPoolId": _IdentityPoolId, "IdentityPoolName": _IdentityPoolName, "CognitoIdentityProviders": (NullOrUndefined Nothing), "DeveloperProviderName": (NullOrUndefined Nothing), "OpenIdConnectProviderARNs": (NullOrUndefined Nothing), "SamlProviderARNs": (NullOrUndefined Nothing), "SupportedLoginProviders": (NullOrUndefined Nothing) }
+newIdentityPool' :: IdentityPoolUnauthenticated -> IdentityPoolId -> IdentityPoolName -> ( { "IdentityPoolId" :: (IdentityPoolId) , "IdentityPoolName" :: (IdentityPoolName) , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated) , "SupportedLoginProviders" :: Maybe (IdentityProviders) , "DeveloperProviderName" :: Maybe (DeveloperProviderName) , "OpenIdConnectProviderARNs" :: Maybe (OIDCProviderList) , "CognitoIdentityProviders" :: Maybe (CognitoIdentityProviderList) , "SamlProviderARNs" :: Maybe (SAMLProviderList) } -> {"IdentityPoolId" :: (IdentityPoolId) , "IdentityPoolName" :: (IdentityPoolName) , "AllowUnauthenticatedIdentities" :: (IdentityPoolUnauthenticated) , "SupportedLoginProviders" :: Maybe (IdentityProviders) , "DeveloperProviderName" :: Maybe (DeveloperProviderName) , "OpenIdConnectProviderARNs" :: Maybe (OIDCProviderList) , "CognitoIdentityProviders" :: Maybe (CognitoIdentityProviderList) , "SamlProviderARNs" :: Maybe (SAMLProviderList) } ) -> IdentityPool
+newIdentityPool' _AllowUnauthenticatedIdentities _IdentityPoolId _IdentityPoolName customize = (IdentityPool <<< customize) { "AllowUnauthenticatedIdentities": _AllowUnauthenticatedIdentities, "IdentityPoolId": _IdentityPoolId, "IdentityPoolName": _IdentityPoolName, "CognitoIdentityProviders": Nothing, "DeveloperProviderName": Nothing, "OpenIdConnectProviderARNs": Nothing, "SamlProviderARNs": Nothing, "SupportedLoginProviders": Nothing }
 
 
 
@@ -726,8 +725,8 @@ instance encodeIdentityPoolName :: Encode IdentityPoolName where encode = generi
 
 -- | <p>A description of the identity pool.</p>
 newtype IdentityPoolShortDescription = IdentityPoolShortDescription 
-  { "IdentityPoolId" :: NullOrUndefined (IdentityPoolId)
-  , "IdentityPoolName" :: NullOrUndefined (IdentityPoolName)
+  { "IdentityPoolId" :: Maybe (IdentityPoolId)
+  , "IdentityPoolName" :: Maybe (IdentityPoolName)
   }
 derive instance newtypeIdentityPoolShortDescription :: Newtype IdentityPoolShortDescription _
 derive instance repGenericIdentityPoolShortDescription :: Generic IdentityPoolShortDescription _
@@ -737,12 +736,12 @@ instance encodeIdentityPoolShortDescription :: Encode IdentityPoolShortDescripti
 
 -- | Constructs IdentityPoolShortDescription from required parameters
 newIdentityPoolShortDescription :: IdentityPoolShortDescription
-newIdentityPoolShortDescription  = IdentityPoolShortDescription { "IdentityPoolId": (NullOrUndefined Nothing), "IdentityPoolName": (NullOrUndefined Nothing) }
+newIdentityPoolShortDescription  = IdentityPoolShortDescription { "IdentityPoolId": Nothing, "IdentityPoolName": Nothing }
 
 -- | Constructs IdentityPoolShortDescription's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newIdentityPoolShortDescription' :: ( { "IdentityPoolId" :: NullOrUndefined (IdentityPoolId) , "IdentityPoolName" :: NullOrUndefined (IdentityPoolName) } -> {"IdentityPoolId" :: NullOrUndefined (IdentityPoolId) , "IdentityPoolName" :: NullOrUndefined (IdentityPoolName) } ) -> IdentityPoolShortDescription
-newIdentityPoolShortDescription'  customize = (IdentityPoolShortDescription <<< customize) { "IdentityPoolId": (NullOrUndefined Nothing), "IdentityPoolName": (NullOrUndefined Nothing) }
+newIdentityPoolShortDescription' :: ( { "IdentityPoolId" :: Maybe (IdentityPoolId) , "IdentityPoolName" :: Maybe (IdentityPoolName) } -> {"IdentityPoolId" :: Maybe (IdentityPoolId) , "IdentityPoolName" :: Maybe (IdentityPoolName) } ) -> IdentityPoolShortDescription
+newIdentityPoolShortDescription'  customize = (IdentityPoolShortDescription <<< customize) { "IdentityPoolId": Nothing, "IdentityPoolName": Nothing }
 
 
 
@@ -802,7 +801,7 @@ instance encodeIdentityProviders :: Encode IdentityProviders where encode = gene
 
 -- | <p>Thrown when the service encounters an error during processing the request.</p>
 newtype InternalErrorException = InternalErrorException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeInternalErrorException :: Newtype InternalErrorException _
 derive instance repGenericInternalErrorException :: Generic InternalErrorException _
@@ -812,18 +811,18 @@ instance encodeInternalErrorException :: Encode InternalErrorException where enc
 
 -- | Constructs InternalErrorException from required parameters
 newInternalErrorException :: InternalErrorException
-newInternalErrorException  = InternalErrorException { "message": (NullOrUndefined Nothing) }
+newInternalErrorException  = InternalErrorException { "message": Nothing }
 
 -- | Constructs InternalErrorException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newInternalErrorException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> InternalErrorException
-newInternalErrorException'  customize = (InternalErrorException <<< customize) { "message": (NullOrUndefined Nothing) }
+newInternalErrorException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> InternalErrorException
+newInternalErrorException'  customize = (InternalErrorException <<< customize) { "message": Nothing }
 
 
 
 -- | <p>Thrown if the identity pool has no role associated for the given auth type (auth/unauth) or if the AssumeRole fails.</p>
 newtype InvalidIdentityPoolConfigurationException = InvalidIdentityPoolConfigurationException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeInvalidIdentityPoolConfigurationException :: Newtype InvalidIdentityPoolConfigurationException _
 derive instance repGenericInvalidIdentityPoolConfigurationException :: Generic InvalidIdentityPoolConfigurationException _
@@ -833,18 +832,18 @@ instance encodeInvalidIdentityPoolConfigurationException :: Encode InvalidIdenti
 
 -- | Constructs InvalidIdentityPoolConfigurationException from required parameters
 newInvalidIdentityPoolConfigurationException :: InvalidIdentityPoolConfigurationException
-newInvalidIdentityPoolConfigurationException  = InvalidIdentityPoolConfigurationException { "message": (NullOrUndefined Nothing) }
+newInvalidIdentityPoolConfigurationException  = InvalidIdentityPoolConfigurationException { "message": Nothing }
 
 -- | Constructs InvalidIdentityPoolConfigurationException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newInvalidIdentityPoolConfigurationException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> InvalidIdentityPoolConfigurationException
-newInvalidIdentityPoolConfigurationException'  customize = (InvalidIdentityPoolConfigurationException <<< customize) { "message": (NullOrUndefined Nothing) }
+newInvalidIdentityPoolConfigurationException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> InvalidIdentityPoolConfigurationException
+newInvalidIdentityPoolConfigurationException'  customize = (InvalidIdentityPoolConfigurationException <<< customize) { "message": Nothing }
 
 
 
 -- | <p>Thrown for missing or bad input parameter(s).</p>
 newtype InvalidParameterException = InvalidParameterException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeInvalidParameterException :: Newtype InvalidParameterException _
 derive instance repGenericInvalidParameterException :: Generic InvalidParameterException _
@@ -854,18 +853,18 @@ instance encodeInvalidParameterException :: Encode InvalidParameterException whe
 
 -- | Constructs InvalidParameterException from required parameters
 newInvalidParameterException :: InvalidParameterException
-newInvalidParameterException  = InvalidParameterException { "message": (NullOrUndefined Nothing) }
+newInvalidParameterException  = InvalidParameterException { "message": Nothing }
 
 -- | Constructs InvalidParameterException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newInvalidParameterException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> InvalidParameterException
-newInvalidParameterException'  customize = (InvalidParameterException <<< customize) { "message": (NullOrUndefined Nothing) }
+newInvalidParameterException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> InvalidParameterException
+newInvalidParameterException'  customize = (InvalidParameterException <<< customize) { "message": Nothing }
 
 
 
 -- | <p>Thrown when the total number of user pools has exceeded a preset limit.</p>
 newtype LimitExceededException = LimitExceededException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeLimitExceededException :: Newtype LimitExceededException _
 derive instance repGenericLimitExceededException :: Generic LimitExceededException _
@@ -875,12 +874,12 @@ instance encodeLimitExceededException :: Encode LimitExceededException where enc
 
 -- | Constructs LimitExceededException from required parameters
 newLimitExceededException :: LimitExceededException
-newLimitExceededException  = LimitExceededException { "message": (NullOrUndefined Nothing) }
+newLimitExceededException  = LimitExceededException { "message": Nothing }
 
 -- | Constructs LimitExceededException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newLimitExceededException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> LimitExceededException
-newLimitExceededException'  customize = (LimitExceededException <<< customize) { "message": (NullOrUndefined Nothing) }
+newLimitExceededException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> LimitExceededException
+newLimitExceededException'  customize = (LimitExceededException <<< customize) { "message": Nothing }
 
 
 
@@ -888,8 +887,8 @@ newLimitExceededException'  customize = (LimitExceededException <<< customize) {
 newtype ListIdentitiesInput = ListIdentitiesInput 
   { "IdentityPoolId" :: (IdentityPoolId)
   , "MaxResults" :: (QueryLimit)
-  , "NextToken" :: NullOrUndefined (PaginationKey)
-  , "HideDisabled" :: NullOrUndefined (HideDisabled)
+  , "NextToken" :: Maybe (PaginationKey)
+  , "HideDisabled" :: Maybe (HideDisabled)
   }
 derive instance newtypeListIdentitiesInput :: Newtype ListIdentitiesInput _
 derive instance repGenericListIdentitiesInput :: Generic ListIdentitiesInput _
@@ -899,20 +898,20 @@ instance encodeListIdentitiesInput :: Encode ListIdentitiesInput where encode = 
 
 -- | Constructs ListIdentitiesInput from required parameters
 newListIdentitiesInput :: IdentityPoolId -> QueryLimit -> ListIdentitiesInput
-newListIdentitiesInput _IdentityPoolId _MaxResults = ListIdentitiesInput { "IdentityPoolId": _IdentityPoolId, "MaxResults": _MaxResults, "HideDisabled": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newListIdentitiesInput _IdentityPoolId _MaxResults = ListIdentitiesInput { "IdentityPoolId": _IdentityPoolId, "MaxResults": _MaxResults, "HideDisabled": Nothing, "NextToken": Nothing }
 
 -- | Constructs ListIdentitiesInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListIdentitiesInput' :: IdentityPoolId -> QueryLimit -> ( { "IdentityPoolId" :: (IdentityPoolId) , "MaxResults" :: (QueryLimit) , "NextToken" :: NullOrUndefined (PaginationKey) , "HideDisabled" :: NullOrUndefined (HideDisabled) } -> {"IdentityPoolId" :: (IdentityPoolId) , "MaxResults" :: (QueryLimit) , "NextToken" :: NullOrUndefined (PaginationKey) , "HideDisabled" :: NullOrUndefined (HideDisabled) } ) -> ListIdentitiesInput
-newListIdentitiesInput' _IdentityPoolId _MaxResults customize = (ListIdentitiesInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "MaxResults": _MaxResults, "HideDisabled": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newListIdentitiesInput' :: IdentityPoolId -> QueryLimit -> ( { "IdentityPoolId" :: (IdentityPoolId) , "MaxResults" :: (QueryLimit) , "NextToken" :: Maybe (PaginationKey) , "HideDisabled" :: Maybe (HideDisabled) } -> {"IdentityPoolId" :: (IdentityPoolId) , "MaxResults" :: (QueryLimit) , "NextToken" :: Maybe (PaginationKey) , "HideDisabled" :: Maybe (HideDisabled) } ) -> ListIdentitiesInput
+newListIdentitiesInput' _IdentityPoolId _MaxResults customize = (ListIdentitiesInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "MaxResults": _MaxResults, "HideDisabled": Nothing, "NextToken": Nothing }
 
 
 
 -- | <p>The response to a ListIdentities request.</p>
 newtype ListIdentitiesResponse = ListIdentitiesResponse 
-  { "IdentityPoolId" :: NullOrUndefined (IdentityPoolId)
-  , "Identities" :: NullOrUndefined (IdentitiesList)
-  , "NextToken" :: NullOrUndefined (PaginationKey)
+  { "IdentityPoolId" :: Maybe (IdentityPoolId)
+  , "Identities" :: Maybe (IdentitiesList)
+  , "NextToken" :: Maybe (PaginationKey)
   }
 derive instance newtypeListIdentitiesResponse :: Newtype ListIdentitiesResponse _
 derive instance repGenericListIdentitiesResponse :: Generic ListIdentitiesResponse _
@@ -922,19 +921,19 @@ instance encodeListIdentitiesResponse :: Encode ListIdentitiesResponse where enc
 
 -- | Constructs ListIdentitiesResponse from required parameters
 newListIdentitiesResponse :: ListIdentitiesResponse
-newListIdentitiesResponse  = ListIdentitiesResponse { "Identities": (NullOrUndefined Nothing), "IdentityPoolId": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newListIdentitiesResponse  = ListIdentitiesResponse { "Identities": Nothing, "IdentityPoolId": Nothing, "NextToken": Nothing }
 
 -- | Constructs ListIdentitiesResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListIdentitiesResponse' :: ( { "IdentityPoolId" :: NullOrUndefined (IdentityPoolId) , "Identities" :: NullOrUndefined (IdentitiesList) , "NextToken" :: NullOrUndefined (PaginationKey) } -> {"IdentityPoolId" :: NullOrUndefined (IdentityPoolId) , "Identities" :: NullOrUndefined (IdentitiesList) , "NextToken" :: NullOrUndefined (PaginationKey) } ) -> ListIdentitiesResponse
-newListIdentitiesResponse'  customize = (ListIdentitiesResponse <<< customize) { "Identities": (NullOrUndefined Nothing), "IdentityPoolId": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newListIdentitiesResponse' :: ( { "IdentityPoolId" :: Maybe (IdentityPoolId) , "Identities" :: Maybe (IdentitiesList) , "NextToken" :: Maybe (PaginationKey) } -> {"IdentityPoolId" :: Maybe (IdentityPoolId) , "Identities" :: Maybe (IdentitiesList) , "NextToken" :: Maybe (PaginationKey) } ) -> ListIdentitiesResponse
+newListIdentitiesResponse'  customize = (ListIdentitiesResponse <<< customize) { "Identities": Nothing, "IdentityPoolId": Nothing, "NextToken": Nothing }
 
 
 
 -- | <p>Input to the ListIdentityPools action.</p>
 newtype ListIdentityPoolsInput = ListIdentityPoolsInput 
   { "MaxResults" :: (QueryLimit)
-  , "NextToken" :: NullOrUndefined (PaginationKey)
+  , "NextToken" :: Maybe (PaginationKey)
   }
 derive instance newtypeListIdentityPoolsInput :: Newtype ListIdentityPoolsInput _
 derive instance repGenericListIdentityPoolsInput :: Generic ListIdentityPoolsInput _
@@ -944,19 +943,19 @@ instance encodeListIdentityPoolsInput :: Encode ListIdentityPoolsInput where enc
 
 -- | Constructs ListIdentityPoolsInput from required parameters
 newListIdentityPoolsInput :: QueryLimit -> ListIdentityPoolsInput
-newListIdentityPoolsInput _MaxResults = ListIdentityPoolsInput { "MaxResults": _MaxResults, "NextToken": (NullOrUndefined Nothing) }
+newListIdentityPoolsInput _MaxResults = ListIdentityPoolsInput { "MaxResults": _MaxResults, "NextToken": Nothing }
 
 -- | Constructs ListIdentityPoolsInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListIdentityPoolsInput' :: QueryLimit -> ( { "MaxResults" :: (QueryLimit) , "NextToken" :: NullOrUndefined (PaginationKey) } -> {"MaxResults" :: (QueryLimit) , "NextToken" :: NullOrUndefined (PaginationKey) } ) -> ListIdentityPoolsInput
-newListIdentityPoolsInput' _MaxResults customize = (ListIdentityPoolsInput <<< customize) { "MaxResults": _MaxResults, "NextToken": (NullOrUndefined Nothing) }
+newListIdentityPoolsInput' :: QueryLimit -> ( { "MaxResults" :: (QueryLimit) , "NextToken" :: Maybe (PaginationKey) } -> {"MaxResults" :: (QueryLimit) , "NextToken" :: Maybe (PaginationKey) } ) -> ListIdentityPoolsInput
+newListIdentityPoolsInput' _MaxResults customize = (ListIdentityPoolsInput <<< customize) { "MaxResults": _MaxResults, "NextToken": Nothing }
 
 
 
 -- | <p>The result of a successful ListIdentityPools action.</p>
 newtype ListIdentityPoolsResponse = ListIdentityPoolsResponse 
-  { "IdentityPools" :: NullOrUndefined (IdentityPoolsList)
-  , "NextToken" :: NullOrUndefined (PaginationKey)
+  { "IdentityPools" :: Maybe (IdentityPoolsList)
+  , "NextToken" :: Maybe (PaginationKey)
   }
 derive instance newtypeListIdentityPoolsResponse :: Newtype ListIdentityPoolsResponse _
 derive instance repGenericListIdentityPoolsResponse :: Generic ListIdentityPoolsResponse _
@@ -966,12 +965,12 @@ instance encodeListIdentityPoolsResponse :: Encode ListIdentityPoolsResponse whe
 
 -- | Constructs ListIdentityPoolsResponse from required parameters
 newListIdentityPoolsResponse :: ListIdentityPoolsResponse
-newListIdentityPoolsResponse  = ListIdentityPoolsResponse { "IdentityPools": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newListIdentityPoolsResponse  = ListIdentityPoolsResponse { "IdentityPools": Nothing, "NextToken": Nothing }
 
 -- | Constructs ListIdentityPoolsResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newListIdentityPoolsResponse' :: ( { "IdentityPools" :: NullOrUndefined (IdentityPoolsList) , "NextToken" :: NullOrUndefined (PaginationKey) } -> {"IdentityPools" :: NullOrUndefined (IdentityPoolsList) , "NextToken" :: NullOrUndefined (PaginationKey) } ) -> ListIdentityPoolsResponse
-newListIdentityPoolsResponse'  customize = (ListIdentityPoolsResponse <<< customize) { "IdentityPools": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newListIdentityPoolsResponse' :: ( { "IdentityPools" :: Maybe (IdentityPoolsList) , "NextToken" :: Maybe (PaginationKey) } -> {"IdentityPools" :: Maybe (IdentityPoolsList) , "NextToken" :: Maybe (PaginationKey) } ) -> ListIdentityPoolsResponse
+newListIdentityPoolsResponse'  customize = (ListIdentityPoolsResponse <<< customize) { "IdentityPools": Nothing, "NextToken": Nothing }
 
 
 
@@ -996,10 +995,10 @@ instance encodeLoginsMap :: Encode LoginsMap where encode = genericEncode option
 -- | <p>Input to the <code>LookupDeveloperIdentityInput</code> action.</p>
 newtype LookupDeveloperIdentityInput = LookupDeveloperIdentityInput 
   { "IdentityPoolId" :: (IdentityPoolId)
-  , "IdentityId" :: NullOrUndefined (IdentityId)
-  , "DeveloperUserIdentifier" :: NullOrUndefined (DeveloperUserIdentifier)
-  , "MaxResults" :: NullOrUndefined (QueryLimit)
-  , "NextToken" :: NullOrUndefined (PaginationKey)
+  , "IdentityId" :: Maybe (IdentityId)
+  , "DeveloperUserIdentifier" :: Maybe (DeveloperUserIdentifier)
+  , "MaxResults" :: Maybe (QueryLimit)
+  , "NextToken" :: Maybe (PaginationKey)
   }
 derive instance newtypeLookupDeveloperIdentityInput :: Newtype LookupDeveloperIdentityInput _
 derive instance repGenericLookupDeveloperIdentityInput :: Generic LookupDeveloperIdentityInput _
@@ -1009,20 +1008,20 @@ instance encodeLookupDeveloperIdentityInput :: Encode LookupDeveloperIdentityInp
 
 -- | Constructs LookupDeveloperIdentityInput from required parameters
 newLookupDeveloperIdentityInput :: IdentityPoolId -> LookupDeveloperIdentityInput
-newLookupDeveloperIdentityInput _IdentityPoolId = LookupDeveloperIdentityInput { "IdentityPoolId": _IdentityPoolId, "DeveloperUserIdentifier": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing), "MaxResults": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newLookupDeveloperIdentityInput _IdentityPoolId = LookupDeveloperIdentityInput { "IdentityPoolId": _IdentityPoolId, "DeveloperUserIdentifier": Nothing, "IdentityId": Nothing, "MaxResults": Nothing, "NextToken": Nothing }
 
 -- | Constructs LookupDeveloperIdentityInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newLookupDeveloperIdentityInput' :: IdentityPoolId -> ( { "IdentityPoolId" :: (IdentityPoolId) , "IdentityId" :: NullOrUndefined (IdentityId) , "DeveloperUserIdentifier" :: NullOrUndefined (DeveloperUserIdentifier) , "MaxResults" :: NullOrUndefined (QueryLimit) , "NextToken" :: NullOrUndefined (PaginationKey) } -> {"IdentityPoolId" :: (IdentityPoolId) , "IdentityId" :: NullOrUndefined (IdentityId) , "DeveloperUserIdentifier" :: NullOrUndefined (DeveloperUserIdentifier) , "MaxResults" :: NullOrUndefined (QueryLimit) , "NextToken" :: NullOrUndefined (PaginationKey) } ) -> LookupDeveloperIdentityInput
-newLookupDeveloperIdentityInput' _IdentityPoolId customize = (LookupDeveloperIdentityInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "DeveloperUserIdentifier": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing), "MaxResults": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newLookupDeveloperIdentityInput' :: IdentityPoolId -> ( { "IdentityPoolId" :: (IdentityPoolId) , "IdentityId" :: Maybe (IdentityId) , "DeveloperUserIdentifier" :: Maybe (DeveloperUserIdentifier) , "MaxResults" :: Maybe (QueryLimit) , "NextToken" :: Maybe (PaginationKey) } -> {"IdentityPoolId" :: (IdentityPoolId) , "IdentityId" :: Maybe (IdentityId) , "DeveloperUserIdentifier" :: Maybe (DeveloperUserIdentifier) , "MaxResults" :: Maybe (QueryLimit) , "NextToken" :: Maybe (PaginationKey) } ) -> LookupDeveloperIdentityInput
+newLookupDeveloperIdentityInput' _IdentityPoolId customize = (LookupDeveloperIdentityInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "DeveloperUserIdentifier": Nothing, "IdentityId": Nothing, "MaxResults": Nothing, "NextToken": Nothing }
 
 
 
 -- | <p>Returned in response to a successful <code>LookupDeveloperIdentity</code> action.</p>
 newtype LookupDeveloperIdentityResponse = LookupDeveloperIdentityResponse 
-  { "IdentityId" :: NullOrUndefined (IdentityId)
-  , "DeveloperUserIdentifierList" :: NullOrUndefined (DeveloperUserIdentifierList)
-  , "NextToken" :: NullOrUndefined (PaginationKey)
+  { "IdentityId" :: Maybe (IdentityId)
+  , "DeveloperUserIdentifierList" :: Maybe (DeveloperUserIdentifierList)
+  , "NextToken" :: Maybe (PaginationKey)
   }
 derive instance newtypeLookupDeveloperIdentityResponse :: Newtype LookupDeveloperIdentityResponse _
 derive instance repGenericLookupDeveloperIdentityResponse :: Generic LookupDeveloperIdentityResponse _
@@ -1032,12 +1031,12 @@ instance encodeLookupDeveloperIdentityResponse :: Encode LookupDeveloperIdentity
 
 -- | Constructs LookupDeveloperIdentityResponse from required parameters
 newLookupDeveloperIdentityResponse :: LookupDeveloperIdentityResponse
-newLookupDeveloperIdentityResponse  = LookupDeveloperIdentityResponse { "DeveloperUserIdentifierList": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newLookupDeveloperIdentityResponse  = LookupDeveloperIdentityResponse { "DeveloperUserIdentifierList": Nothing, "IdentityId": Nothing, "NextToken": Nothing }
 
 -- | Constructs LookupDeveloperIdentityResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newLookupDeveloperIdentityResponse' :: ( { "IdentityId" :: NullOrUndefined (IdentityId) , "DeveloperUserIdentifierList" :: NullOrUndefined (DeveloperUserIdentifierList) , "NextToken" :: NullOrUndefined (PaginationKey) } -> {"IdentityId" :: NullOrUndefined (IdentityId) , "DeveloperUserIdentifierList" :: NullOrUndefined (DeveloperUserIdentifierList) , "NextToken" :: NullOrUndefined (PaginationKey) } ) -> LookupDeveloperIdentityResponse
-newLookupDeveloperIdentityResponse'  customize = (LookupDeveloperIdentityResponse <<< customize) { "DeveloperUserIdentifierList": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing), "NextToken": (NullOrUndefined Nothing) }
+newLookupDeveloperIdentityResponse' :: ( { "IdentityId" :: Maybe (IdentityId) , "DeveloperUserIdentifierList" :: Maybe (DeveloperUserIdentifierList) , "NextToken" :: Maybe (PaginationKey) } -> {"IdentityId" :: Maybe (IdentityId) , "DeveloperUserIdentifierList" :: Maybe (DeveloperUserIdentifierList) , "NextToken" :: Maybe (PaginationKey) } ) -> LookupDeveloperIdentityResponse
+newLookupDeveloperIdentityResponse'  customize = (LookupDeveloperIdentityResponse <<< customize) { "DeveloperUserIdentifierList": Nothing, "IdentityId": Nothing, "NextToken": Nothing }
 
 
 
@@ -1109,7 +1108,7 @@ newMergeDeveloperIdentitiesInput' _DestinationUserIdentifier _DeveloperProviderN
 
 -- | <p>Returned in response to a successful <code>MergeDeveloperIdentities</code> action.</p>
 newtype MergeDeveloperIdentitiesResponse = MergeDeveloperIdentitiesResponse 
-  { "IdentityId" :: NullOrUndefined (IdentityId)
+  { "IdentityId" :: Maybe (IdentityId)
   }
 derive instance newtypeMergeDeveloperIdentitiesResponse :: Newtype MergeDeveloperIdentitiesResponse _
 derive instance repGenericMergeDeveloperIdentitiesResponse :: Generic MergeDeveloperIdentitiesResponse _
@@ -1119,18 +1118,18 @@ instance encodeMergeDeveloperIdentitiesResponse :: Encode MergeDeveloperIdentiti
 
 -- | Constructs MergeDeveloperIdentitiesResponse from required parameters
 newMergeDeveloperIdentitiesResponse :: MergeDeveloperIdentitiesResponse
-newMergeDeveloperIdentitiesResponse  = MergeDeveloperIdentitiesResponse { "IdentityId": (NullOrUndefined Nothing) }
+newMergeDeveloperIdentitiesResponse  = MergeDeveloperIdentitiesResponse { "IdentityId": Nothing }
 
 -- | Constructs MergeDeveloperIdentitiesResponse's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newMergeDeveloperIdentitiesResponse' :: ( { "IdentityId" :: NullOrUndefined (IdentityId) } -> {"IdentityId" :: NullOrUndefined (IdentityId) } ) -> MergeDeveloperIdentitiesResponse
-newMergeDeveloperIdentitiesResponse'  customize = (MergeDeveloperIdentitiesResponse <<< customize) { "IdentityId": (NullOrUndefined Nothing) }
+newMergeDeveloperIdentitiesResponse' :: ( { "IdentityId" :: Maybe (IdentityId) } -> {"IdentityId" :: Maybe (IdentityId) } ) -> MergeDeveloperIdentitiesResponse
+newMergeDeveloperIdentitiesResponse'  customize = (MergeDeveloperIdentitiesResponse <<< customize) { "IdentityId": Nothing }
 
 
 
 -- | <p>Thrown when a user is not authorized to access the requested resource.</p>
 newtype NotAuthorizedException = NotAuthorizedException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeNotAuthorizedException :: Newtype NotAuthorizedException _
 derive instance repGenericNotAuthorizedException :: Generic NotAuthorizedException _
@@ -1140,12 +1139,12 @@ instance encodeNotAuthorizedException :: Encode NotAuthorizedException where enc
 
 -- | Constructs NotAuthorizedException from required parameters
 newNotAuthorizedException :: NotAuthorizedException
-newNotAuthorizedException  = NotAuthorizedException { "message": (NullOrUndefined Nothing) }
+newNotAuthorizedException  = NotAuthorizedException { "message": Nothing }
 
 -- | Constructs NotAuthorizedException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newNotAuthorizedException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> NotAuthorizedException
-newNotAuthorizedException'  customize = (NotAuthorizedException <<< customize) { "message": (NullOrUndefined Nothing) }
+newNotAuthorizedException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> NotAuthorizedException
+newNotAuthorizedException'  customize = (NotAuthorizedException <<< customize) { "message": Nothing }
 
 
 
@@ -1187,7 +1186,7 @@ instance encodeQueryLimit :: Encode QueryLimit where encode = genericEncode opti
 
 -- | <p>Thrown when a user tries to use a login which is already linked to another account.</p>
 newtype ResourceConflictException = ResourceConflictException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeResourceConflictException :: Newtype ResourceConflictException _
 derive instance repGenericResourceConflictException :: Generic ResourceConflictException _
@@ -1197,18 +1196,18 @@ instance encodeResourceConflictException :: Encode ResourceConflictException whe
 
 -- | Constructs ResourceConflictException from required parameters
 newResourceConflictException :: ResourceConflictException
-newResourceConflictException  = ResourceConflictException { "message": (NullOrUndefined Nothing) }
+newResourceConflictException  = ResourceConflictException { "message": Nothing }
 
 -- | Constructs ResourceConflictException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newResourceConflictException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> ResourceConflictException
-newResourceConflictException'  customize = (ResourceConflictException <<< customize) { "message": (NullOrUndefined Nothing) }
+newResourceConflictException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> ResourceConflictException
+newResourceConflictException'  customize = (ResourceConflictException <<< customize) { "message": Nothing }
 
 
 
 -- | <p>Thrown when the requested resource (for example, a dataset or record) does not exist.</p>
 newtype ResourceNotFoundException = ResourceNotFoundException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeResourceNotFoundException :: Newtype ResourceNotFoundException _
 derive instance repGenericResourceNotFoundException :: Generic ResourceNotFoundException _
@@ -1218,20 +1217,20 @@ instance encodeResourceNotFoundException :: Encode ResourceNotFoundException whe
 
 -- | Constructs ResourceNotFoundException from required parameters
 newResourceNotFoundException :: ResourceNotFoundException
-newResourceNotFoundException  = ResourceNotFoundException { "message": (NullOrUndefined Nothing) }
+newResourceNotFoundException  = ResourceNotFoundException { "message": Nothing }
 
 -- | Constructs ResourceNotFoundException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newResourceNotFoundException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> ResourceNotFoundException
-newResourceNotFoundException'  customize = (ResourceNotFoundException <<< customize) { "message": (NullOrUndefined Nothing) }
+newResourceNotFoundException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> ResourceNotFoundException
+newResourceNotFoundException'  customize = (ResourceNotFoundException <<< customize) { "message": Nothing }
 
 
 
 -- | <p>A role mapping.</p>
 newtype RoleMapping = RoleMapping 
   { "Type" :: (RoleMappingType)
-  , "AmbiguousRoleResolution" :: NullOrUndefined (AmbiguousRoleResolutionType)
-  , "RulesConfiguration" :: NullOrUndefined (RulesConfigurationType)
+  , "AmbiguousRoleResolution" :: Maybe (AmbiguousRoleResolutionType)
+  , "RulesConfiguration" :: Maybe (RulesConfigurationType)
   }
 derive instance newtypeRoleMapping :: Newtype RoleMapping _
 derive instance repGenericRoleMapping :: Generic RoleMapping _
@@ -1241,12 +1240,12 @@ instance encodeRoleMapping :: Encode RoleMapping where encode = genericEncode op
 
 -- | Constructs RoleMapping from required parameters
 newRoleMapping :: RoleMappingType -> RoleMapping
-newRoleMapping _Type = RoleMapping { "Type": _Type, "AmbiguousRoleResolution": (NullOrUndefined Nothing), "RulesConfiguration": (NullOrUndefined Nothing) }
+newRoleMapping _Type = RoleMapping { "Type": _Type, "AmbiguousRoleResolution": Nothing, "RulesConfiguration": Nothing }
 
 -- | Constructs RoleMapping's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newRoleMapping' :: RoleMappingType -> ( { "Type" :: (RoleMappingType) , "AmbiguousRoleResolution" :: NullOrUndefined (AmbiguousRoleResolutionType) , "RulesConfiguration" :: NullOrUndefined (RulesConfigurationType) } -> {"Type" :: (RoleMappingType) , "AmbiguousRoleResolution" :: NullOrUndefined (AmbiguousRoleResolutionType) , "RulesConfiguration" :: NullOrUndefined (RulesConfigurationType) } ) -> RoleMapping
-newRoleMapping' _Type customize = (RoleMapping <<< customize) { "Type": _Type, "AmbiguousRoleResolution": (NullOrUndefined Nothing), "RulesConfiguration": (NullOrUndefined Nothing) }
+newRoleMapping' :: RoleMappingType -> ( { "Type" :: (RoleMappingType) , "AmbiguousRoleResolution" :: Maybe (AmbiguousRoleResolutionType) , "RulesConfiguration" :: Maybe (RulesConfigurationType) } -> {"Type" :: (RoleMappingType) , "AmbiguousRoleResolution" :: Maybe (AmbiguousRoleResolutionType) , "RulesConfiguration" :: Maybe (RulesConfigurationType) } ) -> RoleMapping
+newRoleMapping' _Type customize = (RoleMapping <<< customize) { "Type": _Type, "AmbiguousRoleResolution": Nothing, "RulesConfiguration": Nothing }
 
 
 
@@ -1338,7 +1337,7 @@ instance encodeSessionTokenString :: Encode SessionTokenString where encode = ge
 newtype SetIdentityPoolRolesInput = SetIdentityPoolRolesInput 
   { "IdentityPoolId" :: (IdentityPoolId)
   , "Roles" :: (RolesMap)
-  , "RoleMappings" :: NullOrUndefined (RoleMappingMap)
+  , "RoleMappings" :: Maybe (RoleMappingMap)
   }
 derive instance newtypeSetIdentityPoolRolesInput :: Newtype SetIdentityPoolRolesInput _
 derive instance repGenericSetIdentityPoolRolesInput :: Generic SetIdentityPoolRolesInput _
@@ -1348,12 +1347,12 @@ instance encodeSetIdentityPoolRolesInput :: Encode SetIdentityPoolRolesInput whe
 
 -- | Constructs SetIdentityPoolRolesInput from required parameters
 newSetIdentityPoolRolesInput :: IdentityPoolId -> RolesMap -> SetIdentityPoolRolesInput
-newSetIdentityPoolRolesInput _IdentityPoolId _Roles = SetIdentityPoolRolesInput { "IdentityPoolId": _IdentityPoolId, "Roles": _Roles, "RoleMappings": (NullOrUndefined Nothing) }
+newSetIdentityPoolRolesInput _IdentityPoolId _Roles = SetIdentityPoolRolesInput { "IdentityPoolId": _IdentityPoolId, "Roles": _Roles, "RoleMappings": Nothing }
 
 -- | Constructs SetIdentityPoolRolesInput's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newSetIdentityPoolRolesInput' :: IdentityPoolId -> RolesMap -> ( { "IdentityPoolId" :: (IdentityPoolId) , "Roles" :: (RolesMap) , "RoleMappings" :: NullOrUndefined (RoleMappingMap) } -> {"IdentityPoolId" :: (IdentityPoolId) , "Roles" :: (RolesMap) , "RoleMappings" :: NullOrUndefined (RoleMappingMap) } ) -> SetIdentityPoolRolesInput
-newSetIdentityPoolRolesInput' _IdentityPoolId _Roles customize = (SetIdentityPoolRolesInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "Roles": _Roles, "RoleMappings": (NullOrUndefined Nothing) }
+newSetIdentityPoolRolesInput' :: IdentityPoolId -> RolesMap -> ( { "IdentityPoolId" :: (IdentityPoolId) , "Roles" :: (RolesMap) , "RoleMappings" :: Maybe (RoleMappingMap) } -> {"IdentityPoolId" :: (IdentityPoolId) , "Roles" :: (RolesMap) , "RoleMappings" :: Maybe (RoleMappingMap) } ) -> SetIdentityPoolRolesInput
+newSetIdentityPoolRolesInput' _IdentityPoolId _Roles customize = (SetIdentityPoolRolesInput <<< customize) { "IdentityPoolId": _IdentityPoolId, "Roles": _Roles, "RoleMappings": Nothing }
 
 
 
@@ -1368,7 +1367,7 @@ instance encodeTokenDuration :: Encode TokenDuration where encode = genericEncod
 
 -- | <p>Thrown when a request is throttled.</p>
 newtype TooManyRequestsException = TooManyRequestsException 
-  { "message" :: NullOrUndefined (String)
+  { "message" :: Maybe (String)
   }
 derive instance newtypeTooManyRequestsException :: Newtype TooManyRequestsException _
 derive instance repGenericTooManyRequestsException :: Generic TooManyRequestsException _
@@ -1378,12 +1377,12 @@ instance encodeTooManyRequestsException :: Encode TooManyRequestsException where
 
 -- | Constructs TooManyRequestsException from required parameters
 newTooManyRequestsException :: TooManyRequestsException
-newTooManyRequestsException  = TooManyRequestsException { "message": (NullOrUndefined Nothing) }
+newTooManyRequestsException  = TooManyRequestsException { "message": Nothing }
 
 -- | Constructs TooManyRequestsException's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newTooManyRequestsException' :: ( { "message" :: NullOrUndefined (String) } -> {"message" :: NullOrUndefined (String) } ) -> TooManyRequestsException
-newTooManyRequestsException'  customize = (TooManyRequestsException <<< customize) { "message": (NullOrUndefined Nothing) }
+newTooManyRequestsException' :: ( { "message" :: Maybe (String) } -> {"message" :: Maybe (String) } ) -> TooManyRequestsException
+newTooManyRequestsException'  customize = (TooManyRequestsException <<< customize) { "message": Nothing }
 
 
 
@@ -1436,8 +1435,8 @@ newUnlinkIdentityInput' _IdentityId _Logins _LoginsToRemove customize = (UnlinkI
 
 -- | <p>An array of UnprocessedIdentityId objects, each of which contains an ErrorCode and IdentityId.</p>
 newtype UnprocessedIdentityId = UnprocessedIdentityId 
-  { "IdentityId" :: NullOrUndefined (IdentityId)
-  , "ErrorCode" :: NullOrUndefined (ErrorCode)
+  { "IdentityId" :: Maybe (IdentityId)
+  , "ErrorCode" :: Maybe (ErrorCode)
   }
 derive instance newtypeUnprocessedIdentityId :: Newtype UnprocessedIdentityId _
 derive instance repGenericUnprocessedIdentityId :: Generic UnprocessedIdentityId _
@@ -1447,12 +1446,12 @@ instance encodeUnprocessedIdentityId :: Encode UnprocessedIdentityId where encod
 
 -- | Constructs UnprocessedIdentityId from required parameters
 newUnprocessedIdentityId :: UnprocessedIdentityId
-newUnprocessedIdentityId  = UnprocessedIdentityId { "ErrorCode": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing) }
+newUnprocessedIdentityId  = UnprocessedIdentityId { "ErrorCode": Nothing, "IdentityId": Nothing }
 
 -- | Constructs UnprocessedIdentityId's fields from required parameters
 --   This may be useful if you need to immediately overwrite some of the optional values
-newUnprocessedIdentityId' :: ( { "IdentityId" :: NullOrUndefined (IdentityId) , "ErrorCode" :: NullOrUndefined (ErrorCode) } -> {"IdentityId" :: NullOrUndefined (IdentityId) , "ErrorCode" :: NullOrUndefined (ErrorCode) } ) -> UnprocessedIdentityId
-newUnprocessedIdentityId'  customize = (UnprocessedIdentityId <<< customize) { "ErrorCode": (NullOrUndefined Nothing), "IdentityId": (NullOrUndefined Nothing) }
+newUnprocessedIdentityId' :: ( { "IdentityId" :: Maybe (IdentityId) , "ErrorCode" :: Maybe (ErrorCode) } -> {"IdentityId" :: Maybe (IdentityId) , "ErrorCode" :: Maybe (ErrorCode) } ) -> UnprocessedIdentityId
+newUnprocessedIdentityId'  customize = (UnprocessedIdentityId <<< customize) { "ErrorCode": Nothing, "IdentityId": Nothing }
 
 
 

@@ -19,7 +19,7 @@ deleteIdentities :: forall eff. Service -> DeleteIdentitiesInput -> Aff (excepti
 #### `deleteIdentityPool`
 
 ``` purescript
-deleteIdentityPool :: forall eff. Service -> DeleteIdentityPoolInput -> Aff (exception :: EXCEPTION | eff) NoOutput
+deleteIdentityPool :: forall eff. Service -> DeleteIdentityPoolInput -> Aff (exception :: EXCEPTION | eff) Unit
 ```
 
 <p>Deletes a user pool. Once a pool is deleted, users will not be able to authenticate with the pool.</p> <p>You must use AWS Developer credentials to call this API.</p>
@@ -115,7 +115,7 @@ mergeDeveloperIdentities :: forall eff. Service -> MergeDeveloperIdentitiesInput
 #### `setIdentityPoolRoles`
 
 ``` purescript
-setIdentityPoolRoles :: forall eff. Service -> SetIdentityPoolRolesInput -> Aff (exception :: EXCEPTION | eff) NoOutput
+setIdentityPoolRoles :: forall eff. Service -> SetIdentityPoolRolesInput -> Aff (exception :: EXCEPTION | eff) Unit
 ```
 
 <p>Sets the roles for an identity pool. These roles are used when making calls to <a>GetCredentialsForIdentity</a> action.</p> <p>You must use AWS Developer credentials to call this API.</p>
@@ -123,7 +123,7 @@ setIdentityPoolRoles :: forall eff. Service -> SetIdentityPoolRolesInput -> Aff 
 #### `unlinkDeveloperIdentity`
 
 ``` purescript
-unlinkDeveloperIdentity :: forall eff. Service -> UnlinkDeveloperIdentityInput -> Aff (exception :: EXCEPTION | eff) NoOutput
+unlinkDeveloperIdentity :: forall eff. Service -> UnlinkDeveloperIdentityInput -> Aff (exception :: EXCEPTION | eff) Unit
 ```
 
 <p>Unlinks a <code>DeveloperUserIdentifier</code> from an existing identity. Unlinked developer users will be considered new identities next time they are seen. If, for a given Cognito identity, you remove all federated identities as well as the developer user identifier, the Cognito identity becomes inaccessible.</p> <p>You must use AWS Developer credentials to call this API.</p>
@@ -131,7 +131,7 @@ unlinkDeveloperIdentity :: forall eff. Service -> UnlinkDeveloperIdentityInput -
 #### `unlinkIdentity`
 
 ``` purescript
-unlinkIdentity :: forall eff. Service -> UnlinkIdentityInput -> Aff (exception :: EXCEPTION | eff) NoOutput
+unlinkIdentity :: forall eff. Service -> UnlinkIdentityInput -> Aff (exception :: EXCEPTION | eff) Unit
 ```
 
 <p>Unlinks a federated identity from an existing account. Unlinked logins will be considered new identities next time they are seen. Removing the last linked login will make this identity inaccessible.</p> <p>This is a public API. You do not need any credentials to call this API.</p>

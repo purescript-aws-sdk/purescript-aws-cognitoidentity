@@ -25,7 +25,7 @@ deleteIdentities (CognitoIdentity.Service serviceImpl) = AWS.request serviceImpl
 
 
 -- | <p>Deletes a user pool. Once a pool is deleted, users will not be able to authenticate with the pool.</p> <p>You must use AWS Developer credentials to call this API.</p>
-deleteIdentityPool :: forall eff. CognitoIdentity.Service -> CognitoIdentityTypes.DeleteIdentityPoolInput -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+deleteIdentityPool :: forall eff. CognitoIdentity.Service -> CognitoIdentityTypes.DeleteIdentityPoolInput -> Aff (exception :: EXCEPTION | eff) Unit
 deleteIdentityPool (CognitoIdentity.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "deleteIdentityPool"
 
@@ -97,19 +97,19 @@ mergeDeveloperIdentities (CognitoIdentity.Service serviceImpl) = AWS.request ser
 
 
 -- | <p>Sets the roles for an identity pool. These roles are used when making calls to <a>GetCredentialsForIdentity</a> action.</p> <p>You must use AWS Developer credentials to call this API.</p>
-setIdentityPoolRoles :: forall eff. CognitoIdentity.Service -> CognitoIdentityTypes.SetIdentityPoolRolesInput -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+setIdentityPoolRoles :: forall eff. CognitoIdentity.Service -> CognitoIdentityTypes.SetIdentityPoolRolesInput -> Aff (exception :: EXCEPTION | eff) Unit
 setIdentityPoolRoles (CognitoIdentity.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "setIdentityPoolRoles"
 
 
 -- | <p>Unlinks a <code>DeveloperUserIdentifier</code> from an existing identity. Unlinked developer users will be considered new identities next time they are seen. If, for a given Cognito identity, you remove all federated identities as well as the developer user identifier, the Cognito identity becomes inaccessible.</p> <p>You must use AWS Developer credentials to call this API.</p>
-unlinkDeveloperIdentity :: forall eff. CognitoIdentity.Service -> CognitoIdentityTypes.UnlinkDeveloperIdentityInput -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+unlinkDeveloperIdentity :: forall eff. CognitoIdentity.Service -> CognitoIdentityTypes.UnlinkDeveloperIdentityInput -> Aff (exception :: EXCEPTION | eff) Unit
 unlinkDeveloperIdentity (CognitoIdentity.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "unlinkDeveloperIdentity"
 
 
 -- | <p>Unlinks a federated identity from an existing account. Unlinked logins will be considered new identities next time they are seen. Removing the last linked login will make this identity inaccessible.</p> <p>This is a public API. You do not need any credentials to call this API.</p>
-unlinkIdentity :: forall eff. CognitoIdentity.Service -> CognitoIdentityTypes.UnlinkIdentityInput -> Aff (exception :: EXCEPTION | eff) Types.NoOutput
+unlinkIdentity :: forall eff. CognitoIdentity.Service -> CognitoIdentityTypes.UnlinkIdentityInput -> Aff (exception :: EXCEPTION | eff) Unit
 unlinkIdentity (CognitoIdentity.Service serviceImpl) = AWS.request serviceImpl method  where
     method = AWS.MethodName "unlinkIdentity"
 
